@@ -48,7 +48,12 @@ function TodoList({ data = [], title = '', type }) {
           const card_id = e.dataTransfer.getData('card_id');
 
           const card = todos.filter((item) => item.id === card_id && item.status !== type)[0];
-          if (!card) return;
+
+          if (!card) {
+            // const _card = document.getElementById(card_id);
+            // _card.style.display = 'block';
+            return;
+          }
 
           handleTodo({ id: card.id, status: type });
         }}

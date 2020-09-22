@@ -51,9 +51,9 @@ function TodoItem({ item }) {
 
           e.dataTransfer.setData('card_id', target.id);
 
-          setTimeout(() => {
-            target.style.display = 'none';
-          }, 0);
+          // setTimeout(() => {
+          //   target.style.display = 'none';
+          // }, 0);
         }}
         onDragOver={(e) => {
           e.stopPropagation();
