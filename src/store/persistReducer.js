@@ -6,7 +6,7 @@ export default (reducers) => {
     {
       key: 'TodoApp',
       storage,
-      whitelist: ['todo'],
+      whitelist: ['todos'],
     },
     reducers
   );

@@ -7,7 +7,14 @@
   "env": {
     "browser": true,
     "jest": true,
-    "es2021": true
+    "es6": true
+  },
+  "settings": {
+    "import/resolver": {
+      "babel-plugin-root-import": {
+        "rootPathSuffix": "src"
+      }
+    }
   },
   "parserOptions": {
     "ecmaVersion": 2020, // Allows for the parsing of modern ECMAScript features
