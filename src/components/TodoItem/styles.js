@@ -3,6 +3,8 @@ import styled from 'styled-components';
 export const Container = styled.div`
   /* display: flex;
   align-items: center; */
+  /* margin: 5px 0; */
+  padding: 10px;
   margin: 5px 0;
   box-sizing: content-box;
   :hover {

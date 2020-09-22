@@ -41,17 +41,23 @@ function TodoItem({ item }) {
   return (
     <>
       <Container
+        id={item.id}
         onClick={() => {
           setEditable(true);
         }}
         draggable
-        // onDragOver={(ev) => {
-        //   // if (type) console.tron.log('drag over', type);
-        // }}
-        // onDrag={(ev) => {
-        //   // if (type) console.tron.log('drag', type);
-        //   // console.tron.log('drag', Object.keys(e));
-        // }}
+        onDragStart={(e) => {
+          const { target } = e;
+
+          e.dataTransfer.setData('card_id', target.id);
+
+          setTimeout(() => {
+            target.style.display = 'none';
+          }, 0);
+        }}
+        onDragOver={(e) => {
+          e.stopPropagation();
+        }}
       >
         <RBContainer>
           <Row>

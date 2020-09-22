@@ -32,6 +32,12 @@ const todo = (state = INITIAL_STATE, action) => {
         draft.data = state.data.filter((item) => item.id !== action.payload);
         break;
       }
+      case TodoTypes.CHANGE_TODO: {
+        draft.data = state.data.map((item) =>
+          item.id === action.payload.id ? { ...item, status: action.payload.status } : item
+        );
+        break;
+      }
       default:
     }
   });

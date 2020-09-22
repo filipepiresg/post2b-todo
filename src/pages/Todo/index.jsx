@@ -7,24 +7,24 @@ import * as TodoStatus from '../../commom/todoStatus';
 import { Container, Content } from './styles';
 
 function Todo() {
-  const todos = useSelector((state) => state.todos);
+  const todos = useSelector((state) => state.todos.data);
 
   return (
     <Container>
       <Content>
         <TodoList
           title='Todo'
-          data={todos.data.filter((item) => item.status === TodoStatus.TODO)}
+          data={todos.filter((item) => item.status === TodoStatus.TODO)}
           type={TodoStatus.TODO}
         />
         <TodoList
           title='Doing'
-          data={todos.data.filter((item) => item.status === TodoStatus.IN_PROGRESS)}
+          data={todos.filter((item) => item.status === TodoStatus.IN_PROGRESS)}
           type={TodoStatus.IN_PROGRESS}
         />
         <TodoList
           title='Done'
-          data={todos.data.filter((item) => item.status === TodoStatus.DONE)}
+          data={todos.filter((item) => item.status === TodoStatus.DONE)}
           type={TodoStatus.DONE}
         />
       </Content>

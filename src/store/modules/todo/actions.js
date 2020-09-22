@@ -29,3 +29,13 @@ export function removeTodo(id) {
     payload: id,
   };
 }
+
+export function changeStatus(id, status) {
+  return {
+    type: TodoTypes.CHANGE_TODO,
+    payload: {
+      id,
+      status,
+    },
+  };
+}

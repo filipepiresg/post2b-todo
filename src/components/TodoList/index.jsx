@@ -1,13 +1,17 @@
 import React, { useCallback, useState, useRef } from 'react';
 import { Button as RBButton, Form, Modal, Card } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { addTodo } from '~/store/modules/todo/actions';
+import debounce from 'lodash/debounce';
+
+import { addTodo, changeStatus } from '~/store/modules/todo/actions';
 
 import TodoItem from '../TodoItem';
 
 function TodoList({ data = [], title = '', type }) {
   const dispatch = useDispatch();
+  const todos = useSelector((state) => state.todos.data);
+
   const [showMdal, setShowModal] = useState(false);
   const [newTodo, setNewTodo] = useState({ title: '', description: '' });
 
@@ -22,9 +26,33 @@ function TodoList({ data = [], title = '', type }) {
     [dispatch, type]
   );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handleTodo = useCallback(
+    debounce(({ id, status }) => {
+      dispatch(changeStatus(id, status));
+    }, 500),
+    [dispatch]
+  );
+
   return (
     <>
-      <Card style={{ width: '25%', marginTop: 10 }} className='text-center'>
+      <Card
+        style={{ width: '25%', marginTop: 10 }}
+        className='text-center'
+        onDrag={(e) => {
+          e.preventDefault();
+        }}
+        onDragOver={(e) => {
+          e.preventDefault();
+
+          const card_id = e.dataTransfer.getData('card_id');
+
+          const card = todos.filter((item) => item.id === card_id && item.status !== type)[0];
+          if (!card) return;
+
+          handleTodo({ id: card.id, status: type });
+        }}
+      >
         <Card.Header>{title}</Card.Header>
         <Card.Body>
           {data.map((item) => (
@@ -42,25 +70,6 @@ function TodoList({ data = [], title = '', type }) {
           </RBButton>
         </Card.Body>
       </Card>
-      {/* <Container>
-        <Title>{title}</Title>
-        <ul>
-          {data.map((item) => (
-            <TodoItem key={String(item.id)} item={item} type={type} />
-          ))}
-        </ul>
-        <RBButton
-          variant='outline-primary'
-          type='submit'
-          size='sm'
-          block
-          onClick={() => {
-            setShowModal(true);
-          }}
-        >
-          Add Todo
-        </RBButton>
-      </Container> */}
       <Modal
         show={showMdal}
         onHide={() => {
