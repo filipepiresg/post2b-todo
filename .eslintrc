@@ -1,0 +1,86 @@
+{
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly",
+    "__DEV__": true
+  },
+  "parser": "@typescript-eslint/parser", // Specifies the ESLint parser
+  "parserOptions": {
+    "ecmaVersion": 2020, // Allows for the parsing of modern ECMAScript features
+    "sourceType": "module", // Allows for the use of imports
+    "ecmaFeatures": {
+      "jsx": true // Allows for the parsing of JSX
+    }
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+      }
+    },
+    "react": {
+      "version": "detect" // Tells eslint-plugin-react to automatically detect the version of React to use
+    }
+  },
+  "extends": [
+    "plugin:react/recommended", // Uses the recommended rules from @eslint-plugin-react
+    "plugin:prettier/recommended", // Enables eslint-plugin-prettier and eslint-config-prettier. This will display prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
+    "airbnb",
+    "prettier",
+    "prettier/react"
+  ],
+  "plugins": [
+    "react",
+    "jsx-a11y",
+    "import",
+    "react-hooks",
+    "prettier",
+    "eslint-plugin-import-helpers"
+  ],
+  "rules": {
+    // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
+    // e.g. "@typescript-eslint/explicit-function-return-type": "off",
+    "camelcase": "off",
+    "prettier/prettier": ["error"],
+    "react/destructuring-assignment": [0],
+    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-props-no-spreading": [0],
+    "react/state-in-constructor": "off",
+    "react/static-property-placement": "off",
+    "react/prop-types": [0],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "no-underscore-dangle": "off",
+    "react/no-array-index-key": "off",
+    "global-require": "off",
+    "import/prefer-default-export": "off",
+    "import/no-unresolved": [2, { "ignore": ["^~", ".js$", ".jsx$", ".ts$", ".tsx$"] }],
+    "no-alert": "error",
+    "no-console": [
+      "error",
+      {
+        "allow": ["disableYellowBox", "ignoredYellowBox", "clear", "error", "info", "log", "warn"]
+      }
+    ],
+    "no-duplicate-imports": ["error", { "includeExports": true }],
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "no-param-reassign": "warn",
+    "import-helpers/order-imports": [
+      "warn",
+      {
+        "newlinesBetween": "always",
+        "groups": ["/^react/", "/^@react/", "module", "/^~/", ["parent", "sibling", "index"]],
+        "alphabetize": { "order": "asc", "ignoreCase": true }
+      }
+    ],
+    "import/extensions": [
+      "error",
+      "never",
+      { "svg": "always", "json": "always", "png": "always", "jpg": "always" }
+    ]
+  }
+}
