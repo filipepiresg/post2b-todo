@@ -9,6 +9,7 @@ import {
 } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 
+import * as TodoStatus from '~/commom/todoStatus';
 import { removeTodo, editTodo } from '~/store/modules/todo/actions';
 
 import { Container, InfoTitle, InfoDescription } from './styles';
@@ -100,6 +101,26 @@ function TodoItem({ item }) {
                 value={todo.description}
                 onChange={(ev) => setTodo({ ...todo, description: ev.target.value })}
               />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Status</Form.Label>
+              <Form.Control
+                as='select'
+                onChange={(ev) => setTodo({ ...todo, status: ev.target.value })}
+              >
+                <option selected={TodoStatus.TODO === item.status} value={TodoStatus.TODO}>
+                  Todo
+                </option>
+                <option
+                  selected={TodoStatus.IN_PROGRESS === item.status}
+                  value={TodoStatus.IN_PROGRESS}
+                >
+                  Doing
+                </option>
+                <option selected={TodoStatus.DONE === item.status} value={TodoStatus.DONE}>
+                  Done
+                </option>
+              </Form.Control>
             </Form.Group>
           </Form>
         </Modal.Body>

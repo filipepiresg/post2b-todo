@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import debounce from 'lodash/debounce';
 
+import * as TodoStatus from '~/commom/todoStatus';
 import { addTodo, changeStatus } from '~/store/modules/todo/actions';
 
 import TodoItem from '../TodoItem';
@@ -13,17 +14,17 @@ function TodoList({ data = [], title = '', type }) {
   const todos = useSelector((state) => state.todos.data);
 
   const [showMdal, setShowModal] = useState(false);
-  const [newTodo, setNewTodo] = useState({ title: '', description: '' });
+  const [newTodo, setNewTodo] = useState({ title: '', description: '', status: type });
 
   const modalRef = useRef();
 
   const addItem = useCallback(
-    ({ title: _title, description }) => {
-      if (type) dispatch(addTodo({ title: _title, description, status: type }));
+    ({ title: _title, description, status }) => {
+      dispatch(addTodo({ title: _title, description, status }));
 
       setShowModal(false);
     },
-    [dispatch, type]
+    [dispatch]
   );
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -106,6 +107,17 @@ function TodoList({ data = [], title = '', type }) {
                 value={newTodo.description}
                 onChange={(ev) => setNewTodo({ ...newTodo, description: ev.target.value })}
               />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Status</Form.Label>
+              <Form.Control
+                as='select'
+                onChange={(ev) => setNewTodo({ ...newTodo, status: ev.target.value })}
+              >
+                <option>{TodoStatus.TODO}</option>
+                <option>{TodoStatus.IN_PROGRESS}</option>
+                <option>{TodoStatus.DONE}</option>
+              </Form.Control>
             </Form.Group>
           </Form>
         </Modal.Body>

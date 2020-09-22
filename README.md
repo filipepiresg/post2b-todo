@@ -16,11 +16,12 @@ Quando aberto o card, exibirá os campos título e descricão do todo, deve ser 
 
 ## Mudar status
 
-Para mudar o status de um todo, só é necessário arrastar o card (drag n' drop) da lista atual para a desejada.
+Para mudar o status de um todo, só é necessário arrastar o card (drag n' drop) da lista atual para a desejada, ou apenar abrir o card e selecionar o novo status
 
 ___
 
 ### Melhorias possíveis
 
-- Visto que as descricões podem ser muito grandes, pode-se remover a descricão do card (deixando apenas o título) e só o exibindo no modal
-- Colocar um `select` no modal pra facilitar a transição entre as colunas.
+- [ ] Visto que as descricões podem ser muito grandes, pode-se remover a descricão do card (deixando apenas o título) e só o exibindo no modal
+
+- [x] Colocar um `select` no modal pra facilitar a transição entre as colunas.
