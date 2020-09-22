@@ -1,28 +1,29 @@
-import * as TodoTypes from './types'
+import * as TodoTypes from './types';
 
-export function addTodo({ title, description }){
+export function addTodo({ title, description }) {
   return {
     type: TodoTypes.ADD_TODO,
     payload: {
-      title, description
-    }
-  }
+      title,
+      description,
+    },
+  };
 }
 
-export function editTodo({ id,title, description }){
+export function editTodo({ id, title, description }) {
   return {
     type: TodoTypes.EDIT_TODO,
     payload: {
       id,
       title,
-      description
-    }
-  }
+      description,
+    },
+  };
 }
 
-export function removeTodo(id){
+export function removeTodo(id) {
   return {
     type: TodoTypes.REMOVE_TODO,
-    payload: id
-  }
+    payload: id,
+  };
 }
