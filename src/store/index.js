@@ -7,8 +7,7 @@ import rootReducer from './modules/rootReducer';
 import rootSaga from './modules/rootSaga';
 import persistReducers from './persistReducer';
 
-const sagaMonitor =
-  __DEV__ && Reactotron.createSagaMonitor ? Reactotron.createSagaMonitor() : undefined;
+const sagaMonitor = Reactotron.createSagaMonitor ? Reactotron.createSagaMonitor() : undefined;
 
 const sagaMiddleware = createSagaMiddleware({ sagaMonitor });
 

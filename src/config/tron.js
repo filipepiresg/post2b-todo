@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable import/no-extraneous-dependencies */
 import Reactotron from 'reactotron-react-js';
 import { reactotronRedux } from 'reactotron-redux';
@@ -14,5 +15,6 @@ const reactotron = Reactotron.configure({
   .connect();
 
 if (reactotron.clear) reactotron.clear();
+console.tron = reactotron;
 
 export default reactotron;

@@ -17,6 +17,7 @@ const todo = (state = INITIAL_STATE, action) => {
             id: uuidv4(),
             title: action.payload.title,
             description: action.payload.description,
+            status: action.payload.status,
           },
         ];
         break;
@@ -28,7 +29,7 @@ const todo = (state = INITIAL_STATE, action) => {
         break;
       }
       case TodoTypes.REMOVE_TODO: {
-        draft.data = state.data.filter((item) => item.id === action.payload);
+        draft.data = state.data.filter((item) => item.id !== action.payload);
         break;
       }
       default:
